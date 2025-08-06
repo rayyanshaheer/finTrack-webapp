@@ -20,78 +20,51 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <div className="w-full">
-      <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:items-center md:justify-between">
-        {/* Logo and Navigation on mobile */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <button className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-gray-700">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-              </svg>
-            </button>
-            <div className="flex items-center space-x-2">
-              <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-blue-50 text-blue-600">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M16 12h-6.5a2 2 0 1 0 0 4H12"></path>
-                  <path d="M10 8h6a2 2 0 1 1 0 4h-4"></path>
-                </svg>
-              </div>
-              <span className="text-blue-600 font-semibold text-lg">FinTrack</span>
+      <div className="flex justify-between items-center">
+        {/* Mobile menu button - only visible on mobile */}
+        <button className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-gray-700">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        
+        {/* Title with dropdown */}
+        <div className="flex items-center">
+          <h1 className="text-2xl font-semibold text-gray-800">{title}</h1>
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="cursor-pointer text-gray-500 ml-2">
+            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          {isActive && (
+            <div className="flex items-center space-x-1 bg-green-50 px-2 py-1 rounded-full ml-3">
+              <div className="h-2 w-2 rounded-full bg-green-500"></div>
+              <span className="text-xs font-medium text-green-600">Active</span>
             </div>
-          </div>
-          
-          <div className="flex items-center space-x-2 md:hidden">
-            <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-gray-700">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-            </button>
-            <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-gray-700">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-              </svg>
-            </button>
-            <div className="h-9 w-9 rounded-full bg-gray-100 border border-gray-200 overflow-hidden shadow-sm">
-              <img src="/avatars/user.png" alt="User avatar" className="h-full w-full object-cover" />
-            </div>
-          </div>
+          )}
         </div>
         
-        {/* Title and status indicator */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <h1 className="text-xl font-semibold text-gray-800">{title}</h1>
-            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="cursor-pointer text-gray-500">
-              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            {isActive && (
-              <div className="flex items-center space-x-1 bg-green-50 px-2 py-1 rounded-full">
-                <div className="h-2 w-2 rounded-full bg-green-500"></div>
-                <span className="text-xs font-medium text-green-600">Active</span>
-              </div>
-            )}
-          </div>
-        </div>
-        
-        {/* Action buttons on desktop */}
-        <div className="hidden md:flex md:items-center md:space-x-2">
+        {/* Action buttons */}
+        <div className="flex items-center space-x-2">
+          {/* Search button */}
           <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-gray-700">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
           </button>
+          
+          {/* Grid view button */}
           <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-gray-700">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
             </svg>
           </button>
+          
+          {/* User avatar */}
           <div className="h-9 w-9 rounded-full bg-gray-100 border border-gray-200 overflow-hidden shadow-sm">
             <img src="/avatars/user.png" alt="User avatar" className="h-full w-full object-cover" />
           </div>
@@ -100,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({
       
       {/* User avatars */}
       {users.length > 0 && (
-        <div className="mt-4 flex items-center space-x-2">
+        <div className="mt-6 flex items-center space-x-2">
           <div className="flex -space-x-2">
             {users.slice(0, 3).map((user) => (
               <Avatar 
@@ -118,11 +91,18 @@ const Header: React.FC<HeaderProps> = ({
             )}
           </div>
           <span className="text-xs text-gray-500">
-            Shared with <span className="font-medium text-gray-700">{users.slice(0, 3).map(user => user.name).join(', ')}</span>
-            {users.length > 3 ? ` and ${users.length - 3} others` : ''}
+            <span className="font-medium text-gray-700">{users.slice(0, 3).map(user => user.name).join(', ')}</span>
+            {users.length > 3 ? ` +${users.length - 3} others` : ''}
           </span>
         </div>
       )}
+      
+      {/* Share button */}
+      <div className="mt-4 flex justify-end">
+        <button className="py-2 px-4 bg-teal-600 text-white rounded-md font-medium shadow-sm hover:bg-teal-700 transition-colors">
+          Share
+        </button>
+      </div>
       
       {/* Tab navigation */}
       <div className="mt-6 border-b border-gray-200">

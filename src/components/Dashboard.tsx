@@ -32,13 +32,8 @@ const Dashboard: React.FC<DashboardProps> = ({
   
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-white">
-      {/* Mobile Sidebar */}
-      <div className="block md:hidden">
-        <Sidebar />
-      </div>
-      
-      {/* Desktop Sidebar */}
-      <div className="hidden md:block w-64 flex-shrink-0 border-r border-gray-200">
+      {/* Sidebar - hidden on mobile unless toggled */}
+      <div className="hidden md:block w-64 flex-shrink-0">
         <Sidebar />
       </div>
       
