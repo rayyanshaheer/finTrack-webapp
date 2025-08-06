@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { User, Transaction, DashboardSummary } from '@/types';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import SummaryCards from './SummaryCards';
 import TransactionsTable from './TransactionsTable';
+import LoadingState from './LoadingState';
 import { sampleTransactions, sampleDashboardSummary, sampleUsers } from '@/data/mockData';
 
 interface DashboardProps {
@@ -17,6 +18,18 @@ const Dashboard: React.FC<DashboardProps> = ({
   summary = sampleDashboardSummary,
   users = sampleUsers,
 }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<'overview' | 'transactions'>('overview');
+  
+  // Simulate loading state for better UX
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-white">
       {/* Mobile Sidebar */}
@@ -31,14 +44,40 @@ const Dashboard: React.FC<DashboardProps> = ({
       
       {/* Main Content */}
       <div className="flex-grow p-4 md:p-6 lg:p-8">
-        <Header title="Wallet Ledger" isActive={true} users={users} />
+        <Header 
+          title="Wallet Ledger" 
+          isActive={true} 
+          users={users} 
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+        />
         
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold mb-4">Summary</h2>
-          <SummaryCards summary={summary} />
-        </div>
-        
-        <TransactionsTable transactions={transactions} />
+        {isLoading ? (
+          <LoadingState message="Loading dashboard data..." />
+        ) : (
+          <>
+            {activeTab === 'overview' ? (
+              <div className="mt-8">
+                <h2 className="text-xl font-semibold mb-6">Summary</h2>
+                <SummaryCards summary={summary} />
+                <div className="mt-10">
+                  <TransactionsTable 
+                    transactions={transactions.slice(0, 9)} 
+                    isLoading={false} 
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="mt-8">
+                <h2 className="text-xl font-semibold mb-4">All Transactions</h2>
+                <TransactionsTable 
+                  transactions={transactions} 
+                  isLoading={false}
+                />
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ const SummaryCard: React.FC<CardProps> = ({ title, value, change, showOptions = 
   const changePrefix = change >= 0 ? '+' : '';
   
   return (
-    <div className="bg-gray-50 p-4 rounded-lg">
+    <div className="bg-gray-50 p-6 rounded-lg">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-gray-600 font-medium">{title}</h3>
         {showOptions && (
@@ -30,9 +30,9 @@ const SummaryCard: React.FC<CardProps> = ({ title, value, change, showOptions = 
           </button>
         )}
       </div>
-      <div className="space-y-1">
-        <div className="text-3xl font-semibold">{typeof value === 'number' && value >= 0 ? `$${value.toLocaleString()}` : value}</div>
-        <div className={changeClass}>
+      <div className="space-y-2">
+        <div className="text-3xl font-bold">{typeof value === 'number' && value >= 0 ? `$${value.toLocaleString()}` : value}</div>
+        <div className={`text-sm font-medium ${changeClass}`}>
           {changePrefix}{change}%
         </div>
       </div>
