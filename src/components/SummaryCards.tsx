@@ -31,7 +31,9 @@ const SummaryCard: React.FC<CardProps> = ({ title, value, change, showOptions = 
         )}
       </div>
       <div className="space-y-2">
-        <div className="text-3xl font-bold">{typeof value === 'number' && value >= 0 ? `$${value.toLocaleString()}` : value}</div>
+        <div className="text-3xl font-bold text-gray-900">
+          {typeof value === 'number' && title !== 'Transactions' ? `$${value.toLocaleString()}` : value}
+        </div>
         <div className={`text-sm font-medium ${changeClass}`}>
           {changePrefix}{change}%
         </div>

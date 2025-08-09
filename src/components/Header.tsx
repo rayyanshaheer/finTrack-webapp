@@ -99,8 +99,17 @@ const Header: React.FC<HeaderProps> = ({
       
       {/* Share button */}
       <div className="mt-4 flex justify-end">
-        <button className="py-2 px-4 bg-teal-600 text-white rounded-md font-medium shadow-sm hover:bg-teal-700 transition-colors">
+        <button className="py-2 px-5 bg-teal-600 text-white rounded-md font-medium shadow-sm hover:bg-teal-700 transition-colors">
           Share
+        </button>
+        
+        {/* Options menu button */}
+        <button className="ml-2 py-2 px-2 rounded-md border border-gray-200 hover:bg-gray-50">
+          <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 0C9.10457 0 10 0.895431 10 2C10 3.10457 9.10457 4 8 4C6.89543 4 6 3.10457 6 2C6 0.895431 6.89543 0 8 0Z" fill="#1A1A1A"/>
+            <path d="M2 0C3.10457 0 4 0.895431 4 2C4 3.10457 3.10457 4 2 4C0.895431 4 0 3.10457 0 2C0 0.895431 0.895431 0 2 0Z" fill="#1A1A1A"/>
+            <path d="M14 0C15.1046 0 16 0.895431 16 2C16 3.10457 15.1046 4 14 4C12.8954 4 12 3.10457 12 2C12 0.895431 12.8954 0 14 0Z" fill="#1A1A1A"/>
+          </svg>
         </button>
       </div>
       

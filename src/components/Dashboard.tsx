@@ -52,19 +52,19 @@ const Dashboard: React.FC<DashboardProps> = ({
         ) : (
           <>
             {activeTab === 'overview' ? (
-              <div className="mt-8">
-                <h2 className="text-xl font-semibold mb-6">Summary</h2>
+              <div className="mt-10">
+                <h2 className="text-2xl font-semibold mb-6">Summary</h2>
                 <SummaryCards summary={summary} />
-                <div className="mt-10">
+                <div className="mt-12">
                   <TransactionsTable 
-                    transactions={transactions.slice(0, 9)} 
+                    transactions={transactions} 
                     isLoading={false} 
                   />
                 </div>
               </div>
             ) : (
-              <div className="mt-8">
-                <h2 className="text-xl font-semibold mb-4">All Transactions</h2>
+              <div className="mt-10">
+                <h2 className="text-2xl font-semibold mb-4">All Transactions</h2>
                 <TransactionsTable 
                   transactions={transactions} 
                   isLoading={false}

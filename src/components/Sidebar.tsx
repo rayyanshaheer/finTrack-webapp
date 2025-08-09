@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 const Sidebar: React.FC = () => {
   return (
-    <aside className="h-full bg-white w-full md:w-64 border-r border-gray-200 p-4">
-      <div className="flex items-center space-x-2 mb-8">
+    <aside className="h-full bg-white w-full md:w-64 border-r border-gray-200 py-6 px-5">
+      <div className="flex items-center space-x-2 mb-10">
         <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-blue-50 text-blue-600">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
             <circle cx="12" cy="12" r="10"></circle>

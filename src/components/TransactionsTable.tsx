@@ -136,50 +136,51 @@ const TransactionsTable: React.FC<TransactionsTableProps> = ({
 
   return (
     <div className="mt-6">
-      <SearchAndFilter onSearch={handleSearch} onFilter={handleFilter} />
+      {/* Hide the search and filter for now to match the design */}
+      {/* <SearchAndFilter onSearch={handleSearch} onFilter={handleFilter} /> */}
       
       {filteredTransactions.length === 0 ? (
         <EmptyState message="No transactions found" />
       ) : (
-        <div className="overflow-x-auto bg-white rounded-xl shadow-sm border border-gray-100 mt-4">
+        <div className="w-full mt-4">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-gray-100 bg-gray-50">
-                <th className="py-3 px-4 text-left">
+              <tr className="text-sm text-gray-600">
+                <th className="py-3 px-2 text-left font-medium">
                   <button 
-                    className="flex items-center text-gray-700 font-medium text-xs transition-colors hover:text-blue-600" 
+                    className="flex items-center font-medium text-sm transition-colors hover:text-blue-600" 
                     onClick={() => handleSort('date')}
                   >
                     Date {renderSortIcon('date')}
                   </button>
                 </th>
-                <th className="py-3 px-4 text-left">
+                <th className="py-3 px-2 text-left font-medium">
                   <button 
-                    className="flex items-center text-gray-700 font-medium text-xs transition-colors hover:text-blue-600" 
+                    className="flex items-center font-medium text-sm transition-colors hover:text-blue-600" 
                     onClick={() => handleSort('remark')}
                   >
                     Remark {renderSortIcon('remark')}
                   </button>
                 </th>
-                <th className="py-3 px-4 text-right">
+                <th className="py-3 px-2 text-right font-medium">
                   <button 
-                    className="flex items-center justify-end text-gray-700 font-medium text-xs transition-colors hover:text-blue-600" 
+                    className="flex items-center justify-end font-medium text-sm transition-colors hover:text-blue-600 ml-auto" 
                     onClick={() => handleSort('amount')}
                   >
                     Amount {renderSortIcon('amount')}
                   </button>
                 </th>
-                <th className="py-3 px-4 text-left">
+                <th className="py-3 px-2 text-left font-medium">
                   <button 
-                    className="flex items-center text-gray-700 font-medium text-xs transition-colors hover:text-blue-600" 
+                    className="flex items-center font-medium text-sm transition-colors hover:text-blue-600" 
                     onClick={() => handleSort('currency')}
                   >
                     Currency {renderSortIcon('currency')}
                   </button>
                 </th>
-                <th className="py-3 px-4 text-left">
+                <th className="py-3 px-2 text-left font-medium">
                   <button 
-                    className="flex items-center text-gray-700 font-medium text-xs transition-colors hover:text-blue-600" 
+                    className="flex items-center font-medium text-sm transition-colors hover:text-blue-600" 
                     onClick={() => handleSort('type')}
                   >
                     Type {renderSortIcon('type')}
@@ -191,23 +192,23 @@ const TransactionsTable: React.FC<TransactionsTableProps> = ({
               {paginatedTransactions.map((transaction) => (
                 <tr 
                   key={transaction.id} 
-                  className="border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer"
+                  className="border-t border-gray-100 hover:bg-gray-50 transition-colors"
                 >
-                  <td className="py-3.5 px-4 text-sm">{transaction.date}</td>
-                  <td className="py-3.5 px-4 text-sm">{transaction.remark}</td>
-                  <td className="py-3.5 px-4 text-right font-medium text-sm">
+                  <td className="py-3.5 px-2 text-sm">{transaction.date}</td>
+                  <td className="py-3.5 px-2 text-sm">{transaction.remark}</td>
+                  <td className="py-3.5 px-2 text-right font-medium text-sm">
                     {transaction.amount >= 0 
                       ? <span className="text-gray-800">${transaction.amount.toLocaleString()}</span>
                       : <span className="text-gray-800">-${Math.abs(transaction.amount).toLocaleString()}</span>
                     }
                   </td>
-                  <td className="py-3.5 px-4 text-sm">{transaction.currency}</td>
-                  <td className="py-3.5 px-4 text-sm">
-                    <div className="flex items-center space-x-2">
+                  <td className="py-3.5 px-2 text-sm">{transaction.currency}</td>
+                  <td className="py-3.5 px-2 text-sm">
+                    <div className="flex items-center space-x-1">
                       <div 
                         className={`h-2 w-2 rounded-full ${transaction.type === 'Credit' ? 'bg-green-500' : 'bg-red-500'}`}
                       ></div>
-                      <span className={transaction.type === 'Credit' ? 'text-green-700' : 'text-red-700'}>{transaction.type}</span>
+                      <span className={transaction.type === 'Credit' ? 'text-green-600' : 'text-red-600'}>{transaction.type}</span>
                     </div>
                   </td>
                 </tr>
@@ -215,12 +216,13 @@ const TransactionsTable: React.FC<TransactionsTableProps> = ({
             </tbody>
           </table>
           
-          <Pagination 
+          {/* Hide pagination to match the design */}
+          {/* <Pagination 
             totalItems={totalItems}
             itemsPerPage={ITEMS_PER_PAGE}
             currentPage={currentPage}
             onPageChange={setCurrentPage}
-          />
+          /> */}
         </div>
       )}
     </div>
